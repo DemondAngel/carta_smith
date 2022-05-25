@@ -138,7 +138,7 @@ export default class CartaSmith extends React.Component{
         let z0 = this.bigmath.complex(values.txtZ0);
         let nomZ = this.bigmath.divide(z,z0);
 
-        let coords = this.locateInMap(nomZ, 'blue');
+        let coords = this.locateInMap(nomZ, 'blue','imp');
 
         let u = coords.u;
         let v = coords.v;
@@ -174,7 +174,7 @@ export default class CartaSmith extends React.Component{
         
         let zin = this.calculateZin(values.txtDistance, this.bigmath.atan2(v,u), rz);
 
-        if(zin.re === nomZ.re && zin.im === nomZ.im){
+        if((zin.re === nomZ.re && zin.im === nomZ.im) || nomZ.re === 0 || nomZ.re >= 3.37777){
             console.log("No requiere acoplador");
         }
         else{
@@ -185,7 +185,7 @@ export default class CartaSmith extends React.Component{
 
     }
 
-    locateInMap(val, color){
+    locateInMap(val, color, type){
 
         let r = val.re;
         let x = val.im;
@@ -194,12 +194,11 @@ export default class CartaSmith extends React.Component{
         let v = 0;
         if (x !== 0){
             let sqrtValue = this.bigmath.sqrt( this.bigmath.pow((this.bigmath.pow(r,2) + 2*r - this.bigmath.pow(x,2) + 1),2) / (this.bigmath.pow(x,2)*this.bigmath.pow((this.bigmath.pow(r,2) + 2*r + this.bigmath.pow(x,2) + 1),2)))
-
             v =  sqrtValue + 1/x;
-
-            if(v > 1){
+            if( (((u < 0 && v > 0) || (u > 0 && v < 0)) && type === 'stub') || v < -1 || v > 1){
                 v = -sqrtValue +1/x;
             }
+            
         }
 
         let radius = 0.01;
@@ -270,17 +269,28 @@ export default class CartaSmith extends React.Component{
 
     calculateStub(nomZ){
         let yl = this.bigmath.divide(1,nomZ);
-        let coords = this.locateInMap(yl, 'yellow');
+        
+        let coords = this.locateInMap(yl, 'yellow','stub');
         let rp = this.bigmath.sqrt(this.bigmath.pow(coords.u,2) + this.bigmath.pow(coords.v,2));
+        let v = 0;
+        let sqrtU = 0;
+        let u = 0;
 
-        let v = this.bigmath.sqrt(this.bigmath.pow(rp,2) - this.bigmath.pow(rp,4));
-        let u = -this.bigmath.sqrt(1/4 - this.bigmath.pow(v,2)) + 1/2;//Verificar
 
+        v = this.bigmath.sqrt(this.bigmath.pow(rp,2) - this.bigmath.pow(rp,4));
+        sqrtU = this.bigmath.sqrt(1/4 - this.bigmath.pow(v,2));
+        u =  sqrtU + 1/2;
+
+        if(nomZ.re>=1){
+            //v = -v
+            u = -sqrtU + 1/2;
+        }
+        
         let b = (2*v)/(this.bigmath.pow(u,2)-2*u+this.bigmath.pow(v,2)+1);
         console.log(`Este es el valor de u ${u}`);
         let za = this.bigmath.complex(`${1} + ${b}i`);
-        this.locateInMap(za, 'purple');
-
+        this.locateInMap(za, 'purple', 'stub');
+        /*
         let angle0 = this.bigmath.atan2(coords.v, coords.u);
         console.log("Angulo0: " + (angle0*180)/this.bigmath.pi);
         let angle1 = this.bigmath.atan2(v, u);
@@ -303,8 +313,9 @@ export default class CartaSmith extends React.Component{
 
         let b2 = -b;
 
-        let v2 = (2*b2)/(this.bigmath.pow(b2,2)+1);
-        let u2 = -this.bigmath.sqrt(1-this.bigmath.pow(v,2));
+        let v2 = this.bigmath.sqrt(this.bigmath.pow(-this.bigmath.pow(b2,2)+1,2)/( this.bigmath.pow(b2,2)*this.bigmath.pow(this.bigmath.pow(b2,2)+1,2))) + 1/b2;
+
+        let u2 = (this.bigmath.pow(b2,2)-1)/(this.bigmath.pow(b2,2)+1);
         console.log("Este es v2: "+ v2);
         console.log("Este es u2: " + u2);
 
@@ -317,10 +328,16 @@ export default class CartaSmith extends React.Component{
         else{
             distance = finalAngle;
         }
-
+        
+        if(distance < 0){
+            distance = -distance;
+        }
+        else{
+            distance = 360-distance;
+        }
         distance = (0.25/this.bigmath.pi)*distance;
-
-        console.log("La distancia es: " + finalAngle*(180/this.bigmath.pi) + " grados");
+        console.log("La distancia es: " + distance + " lamdas");
+        */
     }
 
     render() {
