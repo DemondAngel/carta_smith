@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/DemondAngel/carta_smith.git/static/css/main.01f2b725.css",
+    "main.js": "/DemondAngel/carta_smith.git/static/js/main.48bfcca7.js",
+    "static/js/787.7cab5936.chunk.js": "/DemondAngel/carta_smith.git/static/js/787.7cab5936.chunk.js",
+    "index.html": "/DemondAngel/carta_smith.git/index.html",
+    "main.01f2b725.css.map": "/DemondAngel/carta_smith.git/static/css/main.01f2b725.css.map",
+    "main.48bfcca7.js.map": "/DemondAngel/carta_smith.git/static/js/main.48bfcca7.js.map",
+    "787.7cab5936.chunk.js.map": "/DemondAngel/carta_smith.git/static/js/787.7cab5936.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.01f2b725.css",
+    "static/js/main.48bfcca7.js"
+  ]
+}
