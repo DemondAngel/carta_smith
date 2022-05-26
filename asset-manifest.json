@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/DemondAngel/carta_smith/static/css/main.01f2b725.css",
-    "main.js": "/DemondAngel/carta_smith/static/js/main.41b1bc2d.js",
-    "static/js/787.7cab5936.chunk.js": "/DemondAngel/carta_smith/static/js/787.7cab5936.chunk.js",
-    "index.html": "/DemondAngel/carta_smith/index.html",
-    "main.01f2b725.css.map": "/DemondAngel/carta_smith/static/css/main.01f2b725.css.map",
-    "main.41b1bc2d.js.map": "/DemondAngel/carta_smith/static/js/main.41b1bc2d.js.map",
-    "787.7cab5936.chunk.js.map": "/DemondAngel/carta_smith/static/js/787.7cab5936.chunk.js.map"
+    "main.css": "/carta_smith/static/css/main.01f2b725.css",
+    "main.js": "/carta_smith/static/js/main.951a5399.js",
+    "static/js/787.7cab5936.chunk.js": "/carta_smith/static/js/787.7cab5936.chunk.js",
+    "index.html": "/carta_smith/index.html",
+    "main.01f2b725.css.map": "/carta_smith/static/css/main.01f2b725.css.map",
+    "main.951a5399.js.map": "/carta_smith/static/js/main.951a5399.js.map",
+    "787.7cab5936.chunk.js.map": "/carta_smith/static/js/787.7cab5936.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.01f2b725.css",
-    "static/js/main.41b1bc2d.js"
+    "static/js/main.951a5399.js"
   ]
 }
