@@ -1,1 +1,11 @@
+.primary-color{
+    background-color: #5c6bc0;
+}
 
+.accent-color{
+    background-color: #ffa726;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
